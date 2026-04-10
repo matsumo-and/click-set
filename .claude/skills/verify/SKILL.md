@@ -1,39 +1,34 @@
 ---
 name: verify
-description: groove2score のコード品質検証スキル。実装が完了したとき、ユーザーが「チェック」「確認」「検証」「verify」「lint」「テスト」「ビルド」などと言ったとき、またはコードの変更が一段落したと判断できるときは必ずこのスキルを使うこと。
+description: click-set のコード品質検証スキル。実装が完了したとき、ユーザーが「チェック」「確認」「検証」「verify」「lint」「テスト」「ビルド」などと言ったとき、またはコードの変更が一段落したと判断できるときは必ずこのスキルを使うこと。
 ---
 
-# groove2score コード品質検証
+# click-set コード品質検証
 
 ## 実行順序
 
 以下を **この順番で** 実行する。
 
-### 1. Lint 自動修正
+### 1. Spotless（ktlint フォーマット自動修正）
 ```bash
-pnpm lint:fix
+./gradlew spotlessApply
 ```
 
-### 2. Format 自動修正
+### 2. Detekt（静的解析）
 ```bash
-pnpm format
-```
-
-### 3. 型チェック
-```bash
-pnpm typecheck
+./gradlew detekt
 ```
 エラーがあればコードを修正してから次へ。
 
-### 4. ビルド
+### 3. ビルド
 ```bash
-pnpm build
+./gradlew assembleDebug
 ```
 エラーがあればコードを修正してから次へ。
 
-### 5. テスト
+### 4. テスト
 ```bash
-pnpm test
+./gradlew test
 ```
 失敗したテストがあればコードを修正する。
 
@@ -44,11 +39,10 @@ pnpm test
 ```
 ## 検証結果
 
-| ステップ     | 結果               |
-|------------|-------------------|
-| Lint 修正   | ✓ or 修正N件      |
-| Format 修正 | ✓ or 修正N件      |
-| 型チェック   | ✓ or エラー内容   |
-| ビルド       | ✓ or エラー内容   |
-| テスト       | ✓ or N件失敗      |
+| ステップ              | 結果               |
+|--------------------|-------------------|
+| Spotless (ktlint)  | ✓ or 修正N件      |
+| Detekt             | ✓ or エラー内容   |
+| ビルド              | ✓ or エラー内容   |
+| テスト              | ✓ or N件失敗      |
 ```

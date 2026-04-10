@@ -1,0 +1,57 @@
+build:
+  maxIssues: 0
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+complexity:
+  LongMethod:
+    threshold: 60
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 8
+  TooManyFunctions:
+    thresholdInFiles: 20
+    thresholdInClasses: 20
+    thresholdInObjects: 20
+
+style:
+  MagicNumber:
+    ignoreNumbers:
+      - '-1'
+      - '0'
+      - '1'
+      - '2'
+    ignoreAnnotated:
+      - 'Preview'
+      - 'Composable'
+  ReturnCount:
+    max: 4
+  MaxLineLength:
+    maxLineLength: 140
+    excludeCommentStatements: true
+  WildcardImport:
+    excludeImports:
+      - 'androidx.compose.foundation.layout.*'
+      - 'androidx.compose.material3.*'
+      - 'androidx.compose.ui.*'
+
+naming:
+  FunctionNaming:
+    excludes:
+      - '**/test/**'
+      - '**/*Test*'
+      - '**/androidTest/**'
+    functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
+
+formatting:
+  active: false  # spotless/ktlint が担当
+
+comments:
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  UndocumentedPublicProperty:
+    active: false
