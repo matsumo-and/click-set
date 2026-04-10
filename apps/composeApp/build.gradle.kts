@@ -7,6 +7,10 @@ plugins {
     alias(libs.plugins.composeCompiler)
 }
 
+compose.resources {
+    packageOfResClass = "clickset.composeapp.generated.resources"
+}
+
 kotlin {
     androidTarget {
         compilerOptions {
