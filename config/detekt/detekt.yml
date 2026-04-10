@@ -44,9 +44,13 @@ naming:
       - '**/*Test*'
       - '**/androidTest/**'
     functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
-
-formatting:
-  active: false  # spotless/ktlint が担当
+    ignoreAnnotated:
+      - 'Composable'
+      - 'Preview'
+  MatchingDeclarationName:
+    excludes:
+      - '**/Platform.android.kt'
+      - '**/Platform.ios.kt'
 
 comments:
   UndocumentedPublicClass:
