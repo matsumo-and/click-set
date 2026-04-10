@@ -17,7 +17,7 @@ kotlin {
         iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "Shared"
+            baseName = "Core"
             isStatic = true
         }
     }
@@ -33,7 +33,7 @@ kotlin {
 }
 
 android {
-    namespace = "io.matsumo.clickset.shared"
+    namespace = "io.matsumo.clickset.core"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

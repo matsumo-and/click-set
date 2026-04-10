@@ -44,7 +44,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Run tests
-        run: ./gradlew :shared:allTests :composeApp:testDebugUnitTest
+        run: ./gradlew :core:allTests :apps:composeApp:testDebugUnitTest
 
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -67,9 +67,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Build debug APK
-        run: ./gradlew :composeApp:assembleDebug
+        run: ./gradlew :apps:composeApp:assembleDebug
 
       - uses: actions/upload-artifact@v4
         with:
           name: debug-apk
-          path: composeApp/build/outputs/apk/debug/*.apk
+          path: apps/composeApp/build/outputs/apk/debug/*.apk

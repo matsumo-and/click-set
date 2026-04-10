@@ -28,8 +28,8 @@ detekt {
     buildUponDefaultConfig = true
     source.setFrom(
         files(
-            "composeApp/src",
-            "shared/src",
+            "apps/composeApp/src",
+            "core/src",
         ),
     )
 }
