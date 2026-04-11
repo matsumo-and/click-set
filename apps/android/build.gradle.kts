@@ -8,7 +8,7 @@ plugins {
 }
 
 compose.resources {
-    packageOfResClass = "clickset.composeapp.generated.resources"
+    packageOfResClass = "clickset.android.generated.resources"
 }
 
 kotlin {
