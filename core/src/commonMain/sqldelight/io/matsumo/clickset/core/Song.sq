@@ -1,0 +1,29 @@
+CREATE TABLE SongEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    bpm INTEGER NOT NULL,
+    beats_per_measure INTEGER NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+getAllSongs:
+SELECT * FROM SongEntity ORDER BY updated_at DESC;
+
+getSongById:
+SELECT * FROM SongEntity WHERE id = ?;
+
+insertSong:
+INSERT INTO SongEntity (title, bpm, beats_per_measure, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?);
+
+updateSong:
+UPDATE SongEntity
+SET title = ?, bpm = ?, beats_per_measure = ?, updated_at = ?
+WHERE id = ?;
+
+deleteSong:
+DELETE FROM SongEntity WHERE id = ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();
