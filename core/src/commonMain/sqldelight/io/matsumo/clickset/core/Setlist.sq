@@ -1,0 +1,54 @@
+CREATE TABLE SetlistEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    created_at INTEGER NOT NULL,
+    updated_at INTEGER NOT NULL
+);
+
+CREATE TABLE SetlistSongEntity (
+    setlist_id INTEGER NOT NULL REFERENCES SetlistEntity(id) ON DELETE CASCADE,
+    song_id INTEGER NOT NULL REFERENCES SongEntity(id) ON DELETE CASCADE,
+    position INTEGER NOT NULL,
+    PRIMARY KEY (setlist_id, song_id)
+);
+
+getAllSetlists:
+SELECT * FROM SetlistEntity ORDER BY updated_at DESC;
+
+getSetlistById:
+SELECT * FROM SetlistEntity WHERE id = ?;
+
+getSongsForSetlist:
+SELECT se.*, sse.position
+FROM SongEntity se
+INNER JOIN SetlistSongEntity sse ON se.id = sse.song_id
+WHERE sse.setlist_id = ?
+ORDER BY sse.position ASC;
+
+insertSetlist:
+INSERT INTO SetlistEntity (title, created_at, updated_at)
+VALUES (?, ?, ?);
+
+updateSetlist:
+UPDATE SetlistEntity
+SET title = ?, updated_at = ?
+WHERE id = ?;
+
+deleteSetlist:
+DELETE FROM SetlistEntity WHERE id = ?;
+
+insertSetlistSong:
+INSERT OR IGNORE INTO SetlistSongEntity (setlist_id, song_id, position)
+VALUES (?, ?, ?);
+
+deleteSetlistSong:
+DELETE FROM SetlistSongEntity WHERE setlist_id = ? AND song_id = ?;
+
+deleteAllSongsFromSetlist:
+DELETE FROM SetlistSongEntity WHERE setlist_id = ?;
+
+getMaxPositionForSetlist:
+SELECT COALESCE(MAX(position), -1) FROM SetlistSongEntity WHERE setlist_id = ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();
