@@ -1,37 +1,37 @@
 ---
 name: verify
-description: click-set のコード品質検証スキル。実装が完了したとき、ユーザーが「チェック」「確認」「検証」「verify」「lint」「テスト」「ビルド」などと言ったとき、またはコードの変更が一段落したと判断できるときは必ずこのスキルを使うこと。
+description: Code quality verification skill for click-set. Use when implementation is complete, when the user says "check", "verify", "lint", "test", or "build", or when a batch of code changes is done.
 ---
 
-# click-set コード品質検証
+# click-set Code Quality Verification
 
-ビルドとテストは CI（GitHub Actions）が担当するため、ローカルでは Spotless と Detekt のみ実行する。
+Builds and tests are handled by CI (GitHub Actions). Locally, run only Spotless and Detekt.
 
-## 実行順序
+## Execution Order
 
-以下を **この順番で** 実行する。
+Run the following **in this order**:
 
-### 1. Spotless（ktlint フォーマット自動修正）
+### 1. Spotless (ktlint auto-fix)
 ```bash
 ./gradlew spotlessApply
 ```
 
-### 2. Detekt（静的解析）
+### 2. Detekt (static analysis)
 ```bash
 ./gradlew detekt
 ```
-エラーがあればコードを修正してから次へ。
+Fix any errors before proceeding.
 
-## 結果の報告
+## Report
 
-全ステップ完了後にまとめて報告する：
+After all steps complete, summarize results:
 
 ```
-## 検証結果
+## Verification Result
 
-| ステップ              | 結果               |
-|--------------------|-------------------|
-| Spotless (ktlint)  | ✓ or 修正N件      |
-| Detekt             | ✓ or エラー内容   |
-| ビルド・テスト       | CI に委譲          |
+| Step                | Result              |
+|---------------------|---------------------|
+| Spotless (ktlint)   | ✓ or N fixes        |
+| Detekt              | ✓ or error details  |
+| Build & Tests       | Delegated to CI     |
 ```

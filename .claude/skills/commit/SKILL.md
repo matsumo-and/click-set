@@ -1,35 +1,35 @@
 ---
 name: commit
-description: click-set プロジェクト用のコミット＆プッシュスキル。コミット、プッシュ、PR作成を行うとき、または「コミット」「プッシュ」「commit」「push」「PR」と言われたときに使うこと。
+description: Commit & push skill for the click-set project. Use when committing, pushing, or creating a PR, or when the user says "commit", "push", or "PR".
 ---
 
-## 機密情報チェック
+## Secret Check
 
-`git diff HEAD` の内容を確認し、以下が含まれていないかチェックすること：
-- APIキー、トークン、パスワード、シークレット
-- 秘密鍵や認証情報
-- `.env` ファイルや credential ファイル
-- `local.properties`（Androidの署名情報などが含まれる場合がある）
+Review `git diff HEAD` and ensure none of the following are included:
+- API keys, tokens, passwords, or secrets
+- Private keys or credentials
+- `.env` files or credential files
+- `local.properties` (may contain Android signing info)
 
-**見つかった場合は即座に中断し、ユーザーに確認を取ること。確認が取れるまでコミットしない。**
+**If found, abort immediately and ask the user for confirmation before committing.**
 
-## コミットメッセージのルール
+## Commit Message Rules
 
-- 簡潔かつ分かりやすく（件名は72文字以内）
-- 命令形で書く（例：「Add feature」「Fix bug」）
-- リポジトリの既存スタイルに合わせる
+- Concise and clear (subject line under 72 characters)
+- Use imperative mood (e.g., "Add feature", "Fix bug")
+- Follow the existing style in the repository
 
-## コミットコマンド
+## Commit Command
 
-必ず `--signoff` を付けること：
+Always include `--signoff`:
 
 ```bash
-git commit --signoff -m "メッセージ"
+git commit --signoff -m "message"
 ```
 
-## プッシュ・PR作成（要求された場合）
+## Push & PR (when requested)
 
 ```bash
 git push origin <branch>
-gh pr create --title "タイトル" --body "説明"
+gh pr create --title "title" --body "description"
 ```

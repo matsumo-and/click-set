@@ -1,39 +1,39 @@
 # click-set
 
-Android / Wear OS / iOS / watchOS 向けのバイブレーションメトロノームアプリ。プリセットとセットリスト機能を備える。
+A vibration metronome app for Android, Wear OS, iOS, and watchOS. Supports presets and setlist management.
 
-## 技術スタック
+## Tech Stack
 
-- **Kotlin Multiplatform** + **Compose Multiplatform** — Android / iOS で UI を共有
-- `apps/android/` — Compose Multiplatform の共通 UI・各プラットフォーム固有コード
-- `core/` — ビジネスロジック・ドメインモデルの共通実装
-- `apps/ios/` — iOS / watchOS アプリのエントリポイント（SwiftUI）
+- **Kotlin Multiplatform** + **Compose Multiplatform** — shared UI across Android and iOS
+- `apps/android/` — shared Compose Multiplatform UI and platform-specific code
+- `core/` — business logic and domain models (shared)
+- `apps/ios/` — iOS / watchOS app entry point (SwiftUI)
 
-## 構成
+## Project Structure
 
-- `apps/android/src/commonMain/` — 共通 UI コンポーネント・画面
-- `apps/android/src/androidMain/` — Android 固有の実装（Wear OS 含む）
-- `apps/android/src/iosMain/` — iOS 固有の実装
-- `core/src/commonMain/` — ドメインモデル・ユースケース・リポジトリ
-- `apps/ios/iosApp/` — iOS / watchOS SwiftUI エントリポイント
+- `apps/android/src/commonMain/` — shared UI components and screens
+- `apps/android/src/androidMain/` — Android-specific implementation (including Wear OS)
+- `apps/android/src/iosMain/` — iOS-specific implementation
+- `core/src/commonMain/` — domain models, use cases, repositories
+- `apps/ios/iosApp/` — iOS / watchOS SwiftUI entry point
 
-## ビルド
+## Build
 
 ```shell
-# Android デバッグビルド
+# Android debug build
 ./gradlew :apps:android:assembleDebug
 
-# コード品質チェック（lint + 静的解析）
+# Code quality check (lint + static analysis)
 ./gradlew spotlessCheck detekt
 ```
 
-## コード品質
+## Code Quality
 
-- **Spotless + ktlint** — Kotlin / Gradle ファイルのフォーマット
-- **Detekt** — 静的解析（`config/detekt/detekt.yml`）
-- フォーマット自動修正: `./gradlew spotlessApply`
+- **Spotless + ktlint** — Kotlin / Gradle file formatting
+- **Detekt** — static analysis (`config/detekt/detekt.yml`)
+- Auto-fix formatting: `./gradlew spotlessApply`
 
-## 制限
+## Rules
 
-- 調査はサブエージェントに任せること
-- 実装後は必ずチェックを行うこと（`verify` スキルを使う）
+- Delegate investigation tasks to subagents
+- Always run quality checks after implementation (use the `verify` skill)
