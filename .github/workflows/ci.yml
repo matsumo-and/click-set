@@ -22,6 +22,11 @@ jobs:
           distribution: temurin
           java-version: 17
 
+      - name: Setup Android SDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;35.0.0"
+
       - uses: gradle/actions/setup-gradle@v4
 
       - name: Spotless check
@@ -40,6 +45,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+
+      - name: Setup Android SDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;35.0.0"
 
       - uses: gradle/actions/setup-gradle@v4
 
@@ -63,6 +73,11 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+
+      - name: Setup Android SDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null 2>&1 || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-36" "build-tools;35.0.0"
 
       - uses: gradle/actions/setup-gradle@v4
 

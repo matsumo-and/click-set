@@ -69,7 +69,7 @@ class SetlistRepositoryImpl(driverFactory: DatabaseDriverFactory) : SetlistRepos
         songId: Long,
     ): Unit =
         withContext(Dispatchers.Default) {
-            val maxPosition = setlistQueries.getMaxPositionForSetlist(setlistId).executeAsOne().MAX ?: -1L
+            val maxPosition = setlistQueries.getMaxPositionForSetlist(setlistId).executeAsOne()
             setlistQueries.insertSetlistSong(
                 setlist_id = setlistId,
                 song_id = songId,
