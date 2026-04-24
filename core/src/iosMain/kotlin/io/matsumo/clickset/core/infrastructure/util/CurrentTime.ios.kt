@@ -1,6 +1,7 @@
 package io.matsumo.clickset.core.infrastructure.util
 
 import platform.Foundation.NSDate
+import platform.Foundation.timeIntervalSince1970
 
 private const val MILLIS_PER_SECOND = 1000
 
