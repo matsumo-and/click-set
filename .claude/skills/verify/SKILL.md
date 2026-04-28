@@ -20,6 +20,17 @@ Run the following **in this order**:
 ```bash
 ./gradlew detekt
 ```
+
+### 3. Compile (main sources)
+```bash
+./gradlew :core:compileDebugKotlinAndroid :apps:android:compileDebugKotlinAndroid
+```
+
+### 4. Compile (test sources)
+```bash
+./gradlew :core:compileReleaseUnitTestKotlinAndroid
+```
+
 Fix any errors before proceeding.
 
 ## Report
@@ -29,9 +40,10 @@ After all steps complete, summarize results:
 ```
 ## Verification Result
 
-| Step                | Result              |
-|---------------------|---------------------|
-| Spotless (ktlint)   | ✓ or N fixes        |
-| Detekt              | ✓ or error details  |
-| Build & Tests       | Delegated to CI     |
+| Step                  | Result              |
+|-----------------------|---------------------|
+| Spotless (ktlint)     | ✓ or N fixes        |
+| Detekt                | ✓ or error details  |
+| Compile (main)        | ✓ or error details  |
+| Compile (test)        | ✓ or error details  |
 ```
